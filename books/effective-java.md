@@ -2,8 +2,6 @@
 
 - [Creating and Destroying Objects](#creating-and-destroying-objects)
 
-  - [**Consider static factory methods instead of constructors**](#consider-static-factory-methods-instead-of-constructors)
-  - [**Consider builder when faced with many constructor parameters**](#consider-builder-when-faced-with-many-constructor-parameters)
   - [**Utility Class Should Have a Private Constructor**](#enforce-noninstantiability-with-a-private-constructor)
   - [**Avoid Creating Unnecessary Objects**](#avoid-creating-unnecessary-objects)
   - [**Try with Resources**](#prefer-try-with-resources-to-try-finally)
@@ -12,6 +10,10 @@
 
   - [**Raw Types**](#dont-use-raw-types)
 
+- [Enums and annotations](#enums-and-annotations)
+
+  - [**Use enums instead of int constants**](#use-enums-instead-of-int-constants)
+
 - [Methods](#methods)
 
   - [**Check Parameters for Validity**](#check-parameters-for-validity)
@@ -19,6 +21,7 @@
 
 - [General Programming](#general-programming)
 
+  - [**Minimize the scope of local variables**](#minimise-the-scope-of-local-variables)
   - [**String Concatenation**](#beware-the-performance-of-string-concatenation)
 
 # [Effective Java](https://www.goodreads.com/book/show/105099.Effective_Java_Programming_Language_Guide)
@@ -2061,6 +2064,22 @@ By minimising the scope of local variables, you increase the readability and mai
 Nearly every local variable declaration should contain an initialiser.
 
 Prefer `for` loops to `while` loops, as `for` loops limit the scope of the variables defined in their bodies.
+
+```java
+// Cách không nên
+int i = 0;
+while (i < 10) {
+    // ... làm gì đó với i ...
+    i++;
+}
+// i vẫn có thể được truy cập ở đây (có thể gây ra lỗi nếu vô tình sử dụng lại)
+
+// Cách nên
+for (int i = 0; i < 10; i++) {
+    // ... làm gì đó với i ...
+}
+// i không còn tồn tại ở đây
+```
 
 Idiom for iterating when you need the iterator
 
